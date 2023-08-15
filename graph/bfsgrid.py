@@ -1,10 +1,13 @@
+from collections import deque
+
+
 directions = [[1, 0],[-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]]
 def isValidBlock(i, j): 
-    if (i>=0 and i<n and j>=0 and j<m):
+    if (i>=0 and i<m and j>=0 and j<n):
         return True
     return False
 def bfs(si, sj, rem):
-    queue = []
+    queue = deque()
     queue.append([si, sj, 0])
     dis[si][sj] = 0
     while queue:

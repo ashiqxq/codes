@@ -41,3 +41,23 @@ rank = [0 for i in s]
 ancestor = list(range(len(s)))
 for a, b in pairs:
     union(a, b)
+
+
+class DSU:
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
+        self.rank = [0] * n
+    
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+    
+    def union(self, a, b):
+        a, b = self.find(a), self.find(b) #this line is important for some cases
+        if self.rank[a]<self.rank[b]:
+            self.parent[self.find(a)] = self.find(b)
+            self.rank[b]+=1
+        else:
+            self.parent[self.find(b)] = self.find(a)
+            self.rank[a]+=1
